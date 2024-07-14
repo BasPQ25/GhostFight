@@ -62,9 +62,10 @@ void Engine::Render()
         SDL_RenderClear(Renderer);
     
     //ninja animation
-        if( SDL_GetTicks() % Graphics::GameGraphics()->AnimationSpeed == 0)
+        if( SDL_GetTicks() - Graphics::GameGraphics()->AnimationSpeed > 100)
         {
-            if(++Graphics::GameGraphics()->frame == 6) Graphics::GameGraphics()->frame = 0 ; 
+            if(++Graphics::GameGraphics()->frame == 6) Graphics::GameGraphics()->frame = 0 ;
+            Graphics::GameGraphics()->AnimationSpeed = SDL_GetTicks(); 
         }
         Graphics::GameGraphics()->DrawFrame("ninja",100,100,100,100,Graphics::GameGraphics()->row , Graphics::GameGraphics()->frame);
 
