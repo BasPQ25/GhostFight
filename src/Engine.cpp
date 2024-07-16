@@ -26,7 +26,12 @@ bool Engine::Init()
         }
 
     //Create and Load Graphics
-        Graphics::GameGraphics()->Create("ninja","image/StayInPlace.png");
+        //Ninja:
+
+            Graphics::GameGraphics()->Create("ninja_StayInPlace","image/StayInPlace.png");
+            Graphics::GameGraphics()->Create("ninja_StayInPlaceOtherSide","image/StayInPlaceOtherSide.png");
+            Graphics::GameGraphics()->Create("ninja_Running","image/Running.png");
+            Graphics::GameGraphics()->Create("ninja_RunningOtherSide","image/RunningOtherSide.png");
 
     
     return GameIsRunning = true;  
@@ -62,13 +67,17 @@ void Engine::Render()
         SDL_RenderClear(Renderer);
     
     //ninja animation
-        if( SDL_GetTicks() - Graphics::GameGraphics()->AnimationSpeed > 100)
+        if( SDL_GetTicks() - Graphics::GameGraphics()->AnimationSpeed_time_keeper  > Graphics::GameGraphics()->AnimationSpeed)
         {
             if(++Graphics::GameGraphics()->frame == 6) Graphics::GameGraphics()->frame = 0 ;
-            Graphics::GameGraphics()->AnimationSpeed = SDL_GetTicks(); 
+            Graphics::GameGraphics()->AnimationSpeed_time_keeper = SDL_GetTicks(); 
         }
-        Graphics::GameGraphics()->DrawFrame("ninja",100,100,100,100,Graphics::GameGraphics()->row , Graphics::GameGraphics()->frame);
-
+        
+        Graphics::GameGraphics()->DrawFrame("ninja_StayInPlace",100,100,100,100,Graphics::GameGraphics()->row , Graphics::GameGraphics()->frame);
+        Graphics::GameGraphics()->DrawFrame("ninja_StayInPlaceOtherSide",300,300,100,100,Graphics::GameGraphics()->row , Graphics::GameGraphics()->frame);
+        Graphics::GameGraphics()->DrawFrame("ninja_Running",500,500,100,100,Graphics::GameGraphics()->row , Graphics::GameGraphics()->frame);
+        Graphics::GameGraphics()->DrawFrame("ninja_RunningOtherSide",700,700,100,100,Graphics::GameGraphics()->row , Graphics::GameGraphics()->frame);
+        
     //show on screen
         SDL_RenderPresent(Renderer);
 

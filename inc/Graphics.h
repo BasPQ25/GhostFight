@@ -21,7 +21,11 @@ class Graphics
 
         //Public variables
             int frame = 0;
-            int AnimationSpeed = 0; //trebe refacut
+            
+            //Animation speed functions
+                unsigned int AnimationSpeed = 100; //trebe refacut
+                unsigned int AnimationSpeed_time_keeper = 0;
+
             int row = 0;
         //Graphics initialization functions
             bool Create(std::string id, std::string filename);
